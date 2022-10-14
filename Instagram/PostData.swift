@@ -19,7 +19,7 @@ class PostData: NSObject {
     //課題追加
     var commentname: String?
     var comment: String?
-    var com: String?
+    var com: [String] = []
     
     init(document: QueryDocumentSnapshot) {
         self.id = document.documentID
@@ -33,7 +33,9 @@ class PostData: NSObject {
         //課題追加
         self.commentname = postDic["commentname"] as? String
         self.comment = postDic["comment"] as? String
-        self.com = postDic["com"] as? String
+        if let com = postDic["com"] as? [String] {
+            self.com = com
+        }
         
         let timestamp = postDic["date"] as? Timestamp
         self.date = timestamp?.dateValue()

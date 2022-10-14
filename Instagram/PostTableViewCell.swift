@@ -19,6 +19,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var comment: UILabel!
     
+    var arraycomment: [PostData] = []
+    
     
     
     override func awakeFromNib() {
@@ -69,9 +71,21 @@ class PostTableViewCell: UITableViewCell {
         }
         
         //コメントの表示
-        self.comment.text = postData.com
+        
+        let arraycomment = postData.com.joined(separator: "\n")
+        //let arraycomment = postData.com.joined(separator: ",")
+        self.comment.text = "\(arraycomment)"
+        print(arraycomment)
+        
         print("コメントの表示")
         
+        self.dateLabel.text = ""
+        if let date = postData.date {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let dateString = formatter.string(from: date)
+            self.dateLabel.text = dateString
+        }
         //コメントする入力欄の表示・非表示
         
         

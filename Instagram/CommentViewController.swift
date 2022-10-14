@@ -36,7 +36,7 @@ class CommentViewController: UIViewController {
         
         commentname = Auth.auth().currentUser?.displayName
         comment = self.Comment.text
-        com = commentname + ":" + comment + "\n"
+        com = commentname + ":" + comment
         
         print(docid)
         print(commentname)
@@ -49,7 +49,7 @@ class CommentViewController: UIViewController {
         
         //firebase更新データを書き込む
         let updateRef = Firestore.firestore().collection(Const.PostPath).document(docid)
-        updateRef.updateData(["com": com])
+        updateRef.updateData(["com": updateValue])
         
         
         //HDDで投稿完了を表示する
